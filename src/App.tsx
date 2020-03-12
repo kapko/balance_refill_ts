@@ -1,26 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import Container from '@material-ui/core/Container';
+// local files
 import './App.css';
+import ListComponent from "./components/list";
+import RefillComponent from "./components/refill";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App(): JSX.Element {
+  const [showList, setShowList] = React.useState<boolean>(true);
+  const showListEvent = (val: boolean) => setShowList(val);
+
+  return <Container maxWidth="sm">
+    {showList ? <ListComponent showListEvent={showListEvent} />
+      : <RefillComponent showListEvent={showListEvent} />}
+  </Container>;
 }
-
-export default App;
